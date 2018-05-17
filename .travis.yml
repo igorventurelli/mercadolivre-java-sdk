@@ -12,4 +12,4 @@ script:
 after_script:
   - mv "./target/site/jacoco/jacoco.xml" "./src/main/java/jacoco.xml"
   - cd ./src/main/java/
-  - ../../../../cc-test-reporter after-build -d -t jacoco
+  - ../../../cc-test-reporter after-build -t jacoco --exit-code $TRAVIS_TEST_RESULT
