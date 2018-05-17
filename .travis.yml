@@ -10,4 +10,6 @@ before_script:
 script:
   - mvn test
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - mv "./target/site/jacoco/jacoco.xml" "./src/main/java/jacoco.xml"
+  - cd ./src/main/java/
+  - ../../../../cc-test-reporter after-build -d -t jacoco
