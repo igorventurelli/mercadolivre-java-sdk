@@ -1,3 +1,4 @@
+# Created by https://www.gitignore.io/api/maven,eclipse
 
 ### Maven ###
 target/
@@ -29,3 +30,5 @@ local.properties
 
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+# End of https://www.gitignore.io/api/maven,eclipse
