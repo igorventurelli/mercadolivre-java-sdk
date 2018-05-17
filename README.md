@@ -1,3 +1,3 @@
 # MercadoLivre Java SDK
 
-[![Build Status](https://travis-ci.org/igorventurelli/mercadolivre-java-sdk.svg?branch=master)](https://travis-ci.org/igorventurelli/mercadolivre-java-sdk)
+[![Build Status](https://travis-ci.org/igorventurelli/mercadolivre-java-sdk.svg?branch=master)](https://travis-ci.org/igorventurelli/mercadolivre-java-sdk) [![Maintainability](https://api.codeclimate.com/v1/badges/fdae62416424a7dc7d02/maintainability)](https://codeclimate.com/github/igorventurelli/mercadolivre-java-sdk/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/fdae62416424a7dc7d02/test_coverage)](https://codeclimate.com/github/igorventurelli/mercadolivre-java-sdk/test_coverage)
