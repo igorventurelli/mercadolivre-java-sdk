@@ -1,6 +1,7 @@
 package br.com.igorventurelli.mercadolivre.api.impl;
 
 import br.com.igorventurelli.mercadolivre.api.MercadoLivreAPI;
+import br.com.igorventurelli.mercadolivre.api.parser.AuthorizationResponseParser;
 import br.com.igorventurelli.mercadolivre.domain.AppInformation;
 import br.com.igorventurelli.mercadolivre.domain.UserInformation;
 import br.com.igorventurelli.mercadolivre.domain.enumeration.AppScope;
@@ -41,37 +42,8 @@ public class MercadoLivreAPIImpl implements MercadoLivreAPI {
 
         final Response response = http.post("/oauth/token", params);
 
-        parseAuthorizationResponse(response);
-    }
-
-    private void parseAuthorizationResponse(final Response response) {
-        final JsonObject jsonObject;
-        try {
-            jsonObject = new JsonParser().parse(response.getResponseBody()).getAsJsonObject();
-        } catch (IOException e) {
-            throw new MercadoLivreException(e);
-        }
-
-        if(response.getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
-            final String message = jsonObject.get("message").getAsString();
-            final String error = jsonObject.get("error").getAsString();
-
-            throw new CodeNotValidException(String.format("Error: %s - Message from API: %s", error, message));
-        }
-
-        final String accessToken = jsonObject.get("access_token").getAsString();
-        final String refreshToken = jsonObject.get("refresh_token").getAsString();
-        final String tokenTypeString = jsonObject.get("token_type").getAsString();
-        final TokenType tokenType = TokenType.getFromString(tokenTypeString);
-        final Long expiresIn = jsonObject.get("expires_in").getAsLong();
-        final String[] scopesString = jsonObject.get("scope").getAsString().split(" ");
-        List<AppScope> scopes = new ArrayList<>();
-        for(final String scope : scopesString) {
-            scopes.add(AppScope.getFromString(scope));
-        }
-
-        userInformation = new UserInformation(accessToken, refreshToken, expiresIn, scopes, tokenType);
-        System.out.println(userInformation.toString());
+        UserInformation u = new AuthorizationResponseParser().parseSingle(response);
+        System.out.println(u);
     }
 
     @Override

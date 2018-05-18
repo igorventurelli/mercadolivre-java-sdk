@@ -18,10 +18,6 @@ public final class MercadoLivre {
     public MercadoLivre(final Long clientId, final String clientSecret, final String code, final String callbackUrl) {
         appInformation = new AppInformation(clientId, clientSecret);
         api = new MercadoLivreAPIImpl(appInformation);
-        try {
-            api.authorize(code, callbackUrl);
-        } catch (IOException e) {
-            throw new MercadoLivreException(e);
-        }
+        api.authorize(code, callbackUrl);
     }
 }
