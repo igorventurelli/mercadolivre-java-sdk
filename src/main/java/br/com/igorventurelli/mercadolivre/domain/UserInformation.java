@@ -10,7 +10,6 @@ import java.util.List;
 public final class UserInformation {
 
     private final String accessToken;
-    private final String userId;
     private final String refreshToken;
     private final Long expiresIn;
     private final List<AppScope> scopes;

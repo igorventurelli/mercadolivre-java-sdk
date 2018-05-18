@@ -13,14 +13,14 @@ import java.util.concurrent.ExecutionException;
 
 public final class HttpRequest {
 
-    private static final String AUTH_URL = "https://api.mercadolibre.com";
+    private static final String API_URL = "https://api.mercadolibre.com%s";
 
     private final Logger logger = Logger.getLogger(HttpRequest.class);
 
     private final AsyncHttpClient http;
 
     public HttpRequest() {
-        AsyncHttpClientConfig cf = new AsyncHttpClientConfig.Builder().setUserAgent("MELI-JAVA-SDK-0.0.4").build();
+        AsyncHttpClientConfig cf = new AsyncHttpClientConfig.Builder().setUserAgent("MERCADOLIVRE-JAVA-SDK-0.0.1").build();
         http = new AsyncHttpClient(cf);
     }
 
@@ -32,17 +32,18 @@ public final class HttpRequest {
     }
 
     private BoundRequestBuilder getRequestBuilder(final String relativeUrl) {
-        return http.preparePost(AUTH_URL + relativeUrl)
+        return http.preparePost(buildFullApiUrl(relativeUrl))
                 .addHeader("Accept", "application/json");
+    }
+
+    private String buildFullApiUrl(final String relativeUrl) {
+        return String.format(API_URL, relativeUrl);
     }
 
     private Response executeHttpRequest(AsyncHttpClient.BoundRequestBuilder r) {
 
         try {
-            Response resp = r.execute().get();
-            System.out.println(resp.getResponseBody());
-
-            return resp;
+            return r.execute().get();
 
 
         } catch (InterruptedException | ExecutionException | IOException e) {
