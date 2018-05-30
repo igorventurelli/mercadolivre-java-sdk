@@ -14,9 +14,12 @@ In the future, you'll be able to do something like that:
     product.setTitle("Title");
     product.setDescription("Description");
     product.setPrice(10.0);
+    product.setQuantity(2);
     product.addPicture(new File("C:\pictures\pic1.png"));
+    product.addPicture(new File("C:\pictures\pic2.png"));
 
-    product.sell();
+    MercadoLivre mercadoLivre = new MercadoLivre();
+    mercadoLivre.sell(product);
 
 ### Why is this project useful?
 
