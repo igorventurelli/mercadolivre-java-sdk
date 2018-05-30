@@ -52,6 +52,8 @@ local.properties
 
 # IntelliJ
 /out/
+.idea/*
+*.iml
 
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721

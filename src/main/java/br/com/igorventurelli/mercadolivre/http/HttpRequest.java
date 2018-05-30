@@ -13,9 +13,8 @@ import java.util.concurrent.ExecutionException;
 
 public final class HttpRequest {
 
+    private static final Logger LOGGER = Logger.getLogger(HttpRequest.class);
     private static final String AUTH_URL = "https://api.mercadolibre.com";
-
-    private final Logger logger = Logger.getLogger(HttpRequest.class);
 
     private final AsyncHttpClient http;
 
@@ -46,7 +45,7 @@ public final class HttpRequest {
 
 
         } catch (InterruptedException | ExecutionException | IOException e) {
-            logger.fatal("There's a problem during the request", e);
+            LOGGER.fatal("There's a problem during the request", e);
             throw new MercadoLivreException(e);
         }
     }
