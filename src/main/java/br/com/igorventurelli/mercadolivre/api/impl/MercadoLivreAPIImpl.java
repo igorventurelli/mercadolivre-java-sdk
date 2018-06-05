@@ -7,11 +7,10 @@ import com.ning.http.client.FluentStringsMap;
 
 public class MercadoLivreAPIImpl implements MercadoLivreAPI {
 
-    private final HttpRequest http;
+    private final HttpRequest http = new HttpRequest();
     private final AppInformation appInformation;
 
     public MercadoLivreAPIImpl(final AppInformation appInformation) {
-        http = new HttpRequest();
         this.appInformation = appInformation;
     }
 
