@@ -29,4 +29,4 @@ jobs:
     if: env(TRAVIS_PULL_REQUEST) != false
     script:
       - echo "******* eh uma pull request"
-      - $BUG_VERSION = $BUG_VERSION + 1
+      - BUG_VERSION = BUG_VERSION + 1
