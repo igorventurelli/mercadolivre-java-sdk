@@ -26,7 +26,9 @@ jobs:
       - ../../../cc-test-reporter after-build -t jacoco --exit-code $TRAVIS_TEST_RESULT
 
     stage: deploy
-    if: env(TRAVIS_PULL_REQUEST) != false
+    if: env($TRAVIS_PULL_REQUEST) != false
     script:
       - echo "******* eh uma pull request"
-      - BUG_VERSION = BUG_VERSION + 1
+    env:
+      global:
+        - BUG_VERSION=10
