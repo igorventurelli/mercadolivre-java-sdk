@@ -22,12 +22,11 @@ import java.util.List;
 
 public class MercadoLivreAPIImpl implements MercadoLivreAPI {
 
-    private final HttpRequest http;
+    private final HttpRequest http = new HttpRequest();
     private final AppInformation appInformation;
     private UserInformation userInformation;
 
     public MercadoLivreAPIImpl(final AppInformation appInformation) {
-        http = new HttpRequest();
         this.appInformation = appInformation;
     }
 

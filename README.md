@@ -1,6 +1,6 @@
 # MercadoLivre Java SDK
 
-[![Build Status](https://travis-ci.org/igorventurelli/mercadolivre-java-sdk.svg?branch=master)](https://travis-ci.org/igorventurelli/mercadolivre-java-sdk) [![Maintainability](https://api.codeclimate.com/v1/badges/fdae62416424a7dc7d02/maintainability)](https://codeclimate.com/github/igorventurelli/mercadolivre-java-sdk/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/fdae62416424a7dc7d02/test_coverage)](https://codeclimate.com/github/igorventurelli/mercadolivre-java-sdk/test_coverage)
+[![Build Status](https://travis-ci.org/igorventurelli/mercadolivre-java-sdk.svg?branch=master)](https://travis-ci.org/igorventurelli/mercadolivre-java-sdk) [![Maintainability](https://api.codeclimate.com/v1/badges/fdae62416424a7dc7d02/maintainability)](https://codeclimate.com/github/igorventurelli/mercadolivre-java-sdk/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/fdae62416424a7dc7d02/test_coverage)](https://codeclimate.com/github/igorventurelli/mercadolivre-java-sdk/test_coverage) [![Join the chat at https://gitter.im/mercadolivre-java-sdk/Lobby](https://badges.gitter.im/mercadolivre-java-sdk/Lobby.svg)](https://gitter.im/mercadolivre-java-sdk/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is an unofficial MercadoLivre Java SDK.  
 I've created a PR to the [official repo](https://github.com/mercadolibre/java-sdk) but it seems to be no more maintained, so I decided to create my own implementation.
@@ -14,9 +14,12 @@ In the future, you'll be able to do something like that:
     product.setTitle("Title");
     product.setDescription("Description");
     product.setPrice(10.0);
+    product.setQuantity(2);
     product.addPicture(new File("C:\pictures\pic1.png"));
+    product.addPicture(new File("C:\pictures\pic2.png"));
 
-    product.sell();
+    MercadoLivre mercadoLivre = new MercadoLivre();
+    mercadoLivre.sell(product);
 
 ### Why is this project useful?
 
