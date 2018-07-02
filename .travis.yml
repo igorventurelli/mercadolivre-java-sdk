@@ -6,15 +6,22 @@ cache:
     - "$HOME/.m2"
     - ~/artifacts
 
+stages:
+  - install
+  - build
+
 jobs:
   include:
+    stage: install
+    install: mvn install
+
     stage: build
     before_script:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
     script:
-      - mvn clean install
+      - mvn test
     after_script:
       - mv "./target/site/jacoco/jacoco.xml" "./src/main/java/jacoco.xml"
       - cd ./src/main/java/
