@@ -13,22 +13,20 @@ stages:
 jobs:
   include:
     stage: build
-    install: mvn install -DskipTests
     before_script:
       - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       - chmod +x ./cc-test-reporter
       - ./cc-test-reporter before-build
     script:
-      - mvn test
+      - mvn clean install
     after_script:
       - mv "./target/site/jacoco/jacoco.xml" "./src/main/java/jacoco.xml"
       - cd ./src/main/java/
       - ../../../cc-test-reporter after-build -t jacoco --exit-code $TRAVIS_TEST_RESULT
 
     stage: deploy
-    if: env($TRAVIS_PULL_REQUEST) != false
+    if: env(TRAVIS_PULL_REQUEST) != false
     script:
       - echo "******* eh uma pull request"
     env:
-      global:
-        - BUG_VERSION=10
+      - BUG_VERSION=10
