@@ -6,7 +6,14 @@ public enum TokenType {
 
     private final String type;
 
-    private TokenType(final String type) {
+    TokenType(final String type) {
         this.type = type;
+    }
+
+    public static TokenType getFromString(final String value) {
+        for(final TokenType tokenType : TokenType.values()) {
+            if(tokenType.type.equals(value)) return tokenType;
+        }
+        return null;
     }
 }

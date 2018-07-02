@@ -2,18 +2,34 @@ package br.com.igorventurelli.mercadolivre.domain;
 
 import br.com.igorventurelli.mercadolivre.domain.enumeration.AppScope;
 import br.com.igorventurelli.mercadolivre.domain.enumeration.TokenType;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.Value;
 
 import java.util.List;
 
-@Value
+@Getter
 public final class UserInformation {
 
-    private final String accessToken;
-    private final String userId;
+    @Setter
+    private String accessToken;
     private final String refreshToken;
-    private final Long expiresIn;
+    @Setter
+    private Long expiresIn;
     private final List<AppScope> scopes;
     private final TokenType tokenType;
+
+    public UserInformation(final String refreshToken, final List<AppScope> scopes, final TokenType tokenType) {
+        this.refreshToken = refreshToken;
+        this.scopes = scopes;
+        this.tokenType = tokenType;
+    }
+
+    public UserInformation(final String refreshToken, final List<AppScope> scopes, final TokenType tokenType,
+                           final String accessToken, final Long expiresIn) {
+        this(refreshToken, scopes, tokenType);
+        this.accessToken = accessToken;
+        this.expiresIn = expiresIn;
+    }
 
 }
